@@ -1,0 +1,44 @@
+syntax = "proto3";
+package room;
+
+
+message Room {
+    string id = 1;
+    string roomnumber = 2;
+    string description = 3;
+  
+}
+
+
+message GetRoomRequest {
+    string room_id = 1;
+}
+
+message GetRoomResponse {
+    Room room = 1;
+}
+
+message SearchRoomsRequest {
+    string query = 1;
+}
+
+message SearchRoomsResponse {
+    repeated Room rooms = 1;
+}
+
+message AddRoomRequest {
+    string roomnumber = 1;
+    string description = 2;
+}
+
+message AddRoomResponse {
+    Room room = 1;
+}
+
+
+service RoomService {
+    rpc GetRoom(GetRoomRequest) returns (GetRoomResponse);
+    rpc SearchRooms(SearchRoomsRequest) returns (SearchRoomsResponse);
+    rpc AddRoom(AddRoomRequest) returns (AddRoomResponse);
+  
+}
